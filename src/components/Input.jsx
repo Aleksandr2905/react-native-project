@@ -5,8 +5,9 @@ export const Input = ({ name, value, placeholder, onChangeText }) => {
     <TextInput
       style={styles.input}
       name={name}
-      value={value}
       placeholder={placeholder}
+      placeholderTextColor="#bdbdbd"
+      value={value}
       onChangeText={onChangeText}
     />
   );
@@ -14,7 +15,16 @@ export const Input = ({ name, value, placeholder, onChangeText }) => {
 
 const styles = StyleSheet.create({
   input: {
+    height: 50,
+    marginBottom: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 15,
     borderRadius: 8,
-    borderColor: "#f6f6f6",
+    borderWidth: 1,
+    fontSize: 16,
+    fontFamily: "Roboto-Regular",
+    borderColor: "#E8E8E8",
+    backgroundColor: "#F6F6F6",
   },
 });
