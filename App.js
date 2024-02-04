@@ -1,14 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import { Background } from "./src/components/Background";
+import { RegistrationScreen } from "./src/Screens/RegistrationScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "Inter-Medium": import("./assets/fonts/Inter-Medium.ttf"),
-    "Roboto-Bold": import("./assets/fonts/Roboto-Bold.ttf"),
-    "Roboto-Medium": import("./assets/fonts/Roboto-Medium.ttf"),
-    "Roboto-Regular": import("./assets/fonts/Roboto-Regular.ttf"),
+    "Inter-Medium": require("./assets/fonts/Inter-Medium.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <Background>
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <RegistrationScreen />
         <StatusBar style="auto" />
       </View>
     </Background>
@@ -28,8 +29,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "transparent",
-    alignItems: "center",
-    justifyContent: "center",
+    // backgroundColor: "transparent",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
 });
