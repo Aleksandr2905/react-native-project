@@ -17,7 +17,7 @@ export const RegistrationScreen = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    paddingTop: 92,
+    paddingTop: 90,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     paddingLeft: 16,
