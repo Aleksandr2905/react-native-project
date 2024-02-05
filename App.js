@@ -1,7 +1,7 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
-import { Background } from "./src/components/Background";
 import { RegistrationScreen } from "./src/Screens/RegistrationScreen";
 import { LoginScreen } from "./src/Screens/LoginScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -22,8 +22,8 @@ export default function App() {
     <NavigationContainer>
       <View style={styles.container}>
         <RegistrationScreen />
-        <LoginScreen />
-        <StatusBar style="auto" />
+        {/* <LoginScreen /> */}
+        {/* <StatusBar style="auto" /> */}
       </View>
     </NavigationContainer>
   );
