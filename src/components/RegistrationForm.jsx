@@ -1,4 +1,5 @@
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -10,13 +11,18 @@ import {
 import { Input } from "./Input";
 import { ButtonForm } from "./ButtonForm";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export const RegistrationForm = () => {
   const [login, setLogin] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation("");
 
   const onRegister = () => {
+    if (!login || !email || !password) {
+      Alert.alert("Заповніть будь-ласка усі поля");
+    }
     const user = { login, email, password };
     console.log(user);
     setLogin("");
@@ -49,7 +55,15 @@ export const RegistrationForm = () => {
             onChangeText={setPassword}
           />
           <ButtonForm title="Зареєстуватися" onPress={onRegister} />
-          <Text style={styles.text}>Вже є акаунт? Увійти</Text>
+          <View style={styles.wrapperText}>
+            <Text style={styles.text}>Вже є акаунт?</Text>
+            <Text
+              style={styles.textLogin}
+              onPress={() => navigation.navigate("Login")}
+            >
+              Увійти
+            </Text>
+          </View>
         </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>
@@ -57,9 +71,17 @@ export const RegistrationForm = () => {
 };
 
 const styles = StyleSheet.create({
-  text: {
-    textAlign: "center",
-    color: "#1b4371",
+  wrapperText: {
+    flexDirection: "row",
+    justifyContent: "center",
     marginBottom: 45,
+  },
+  text: {
+    color: "#1b4371",
+    paddingRight: 4,
+  },
+  textLogin: {
+    color: "#1b4371",
+    textDecorationLine: "underline",
   },
 });
