@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 import { Background } from "./src/components/Background";
 import { RegistrationScreen } from "./src/Screens/RegistrationScreen";
+import { LoginScreen } from "./src/Screens/LoginScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +20,8 @@ export default function App() {
   return (
     <Background>
       <View style={styles.container}>
-        <RegistrationScreen />
+        {/* <RegistrationScreen /> */}
+        <LoginScreen />
         <StatusBar style="auto" />
       </View>
     </Background>
