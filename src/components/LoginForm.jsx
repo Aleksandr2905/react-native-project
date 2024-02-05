@@ -1,15 +1,50 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { Input } from "./Input";
 import { ButtonForm } from "./ButtonForm";
+import { useState } from "react";
 
 export const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onLogin = () => {
+    const user = { email, password };
+    console.log(user);
+    setEmail("");
+    setPassword("");
+  };
+
   return (
-    <View>
-      <Input name="email" placeholder="Адреса електронної пошти" value="" />
-      <Input name="password" placeholder="Пароль" value="" />
-      <ButtonForm title="Увійти" />
-      <Text style={styles.text}>Немає акаунту? Зареєструватися</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
+          <Input
+            name="email"
+            placeholder="Адреса електронної пошти"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <Input
+            name="password"
+            placeholder="Пароль"
+            value={password}
+            onChangeText={setPassword}
+          />
+          <ButtonForm title="Увійти" onPress={onLogin} />
+          <Text style={styles.text}>Немає акаунту? Зареєструватися</Text>
+        </KeyboardAvoidingView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

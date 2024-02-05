@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import { Background } from "./src/components/Background";
 import { RegistrationScreen } from "./src/Screens/RegistrationScreen";
 import { LoginScreen } from "./src/Screens/LoginScreen";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,13 +19,13 @@ export default function App() {
   }
 
   return (
-    <Background>
+    <NavigationContainer>
       <View style={styles.container}>
-        {/* <RegistrationScreen /> */}
+        <RegistrationScreen />
         <LoginScreen />
         <StatusBar style="auto" />
       </View>
-    </Background>
+    </NavigationContainer>
   );
 }
 
