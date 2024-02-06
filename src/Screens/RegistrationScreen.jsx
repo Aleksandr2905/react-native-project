@@ -2,11 +2,13 @@ import { StyleSheet, View } from "react-native";
 import { Background } from "../components/Background";
 import { Title } from "../components/Title";
 import { RegistrationForm } from "../components/RegistrationForm";
+import { Avatar } from "../components/Avatar";
 
 export const RegistrationScreen = () => {
   return (
     <Background>
       <View style={styles.container}>
+        <Avatar />
         <Title title="Реєстрація" />
         <RegistrationForm />
       </View>
