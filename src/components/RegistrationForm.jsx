@@ -1,13 +1,4 @@
-import {
-  Alert,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { Input } from "./Input";
 import { ButtonForm } from "./ButtonForm";
 import { useState } from "react";
@@ -31,42 +22,36 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+    <View>
+      <Input
+        name="login"
+        placeholder="Логін"
+        value={login}
+        onChangeText={setLogin}
+      />
+      <Input
+        name="email"
+        placeholder="Адреса електронної пошти"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <Input
+        name="password"
+        placeholder="Пароль"
+        value={password}
+        onChangeText={setPassword}
+      />
+      <ButtonForm title="Зареєстуватися" onPress={onRegister} />
+      <View style={styles.wrapperText}>
+        <Text style={styles.text}>Вже є акаунт?</Text>
+        <Text
+          style={styles.textLogin}
+          onPress={() => navigation.navigate("Login")}
         >
-          <Input
-            name="login"
-            placeholder="Логін"
-            value={login}
-            onChangeText={setLogin}
-          />
-          <Input
-            name="email"
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <Input
-            name="password"
-            placeholder="Пароль"
-            value={password}
-            onChangeText={setPassword}
-          />
-          <ButtonForm title="Зареєстуватися" onPress={onRegister} />
-          <View style={styles.wrapperText}>
-            <Text style={styles.text}>Вже є акаунт?</Text>
-            <Text
-              style={styles.textLogin}
-              onPress={() => navigation.navigate("Login")}
-            >
-              Увійти
-            </Text>
-          </View>
-        </KeyboardAvoidingView>
+          Увійти
+        </Text>
       </View>
-    </TouchableWithoutFeedback>
+    </View>
   );
 };
 

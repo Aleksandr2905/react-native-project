@@ -34,7 +34,7 @@ export const Avatar = ({ avatar, setAvatar }) => {
         {!avatar ? (
           <AntDesign name="pluscircleo" size={25} style={styles.icon} />
         ) : (
-          <AntDesign name="closecircleo" size={25} style={styles.icon} />
+          <AntDesign name="closecircleo" size={25} style={styles.iconDelete} />
         )}
       </TouchableOpacity>
     </View>
@@ -71,6 +71,11 @@ const styles = StyleSheet.create({
   icon: {
     borderRadius: 50,
     color: "#FF6C00",
+    backgroundColor: "transparent",
+  },
+  iconDelete: {
+    borderRadius: 50,
+    color: "#E8E8E8",
     backgroundColor: "transparent",
   },
 });

@@ -1,13 +1,4 @@
-import {
-  Alert,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { Input } from "./Input";
 import { ButtonForm } from "./ButtonForm";
 import { useState } from "react";
@@ -29,36 +20,30 @@ export const LoginForm = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
+    <View>
+      <Input
+        name="email"
+        placeholder="Адреса електронної пошти"
+        value={email}
+        onChangeText={setEmail}
+      />
+      <Input
+        name="password"
+        placeholder="Пароль"
+        value={password}
+        onChangeText={setPassword}
+      />
+      <ButtonForm title="Увійти" onPress={onLogin} />
+      <View style={styles.wrapperText}>
+        <Text style={styles.text}>Немає акаунту? </Text>
+        <Text
+          style={styles.textRegister}
+          onPress={() => navigation.navigate("Registration")}
         >
-          <Input
-            name="email"
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <Input
-            name="password"
-            placeholder="Пароль"
-            value={password}
-            onChangeText={setPassword}
-          />
-          <ButtonForm title="Увійти" onPress={onLogin} />
-          <View style={styles.wrapperText}>
-            <Text style={styles.text}>Немає акаунту? </Text>
-            <Text
-              style={styles.textRegister}
-              onPress={() => navigation.navigate("Registration")}
-            >
-              Зареєструватися
-            </Text>
-          </View>
-        </KeyboardAvoidingView>
+          Зареєструватися
+        </Text>
       </View>
-    </TouchableWithoutFeedback>
+    </View>
   );
 };
 
