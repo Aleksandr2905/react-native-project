@@ -3,12 +3,15 @@ import { Background } from "../components/Background";
 import { Title } from "../components/Title";
 import { RegistrationForm } from "../components/RegistrationForm";
 import { Avatar } from "../components/Avatar";
+import { useState } from "react";
 
 export const RegistrationScreen = () => {
+  const [avatar, setAvatar] = useState(null);
+
   return (
     <Background>
       <View style={styles.container}>
-        <Avatar />
+        <Avatar avatar={avatar} setAvatar={setAvatar} />
         <Title title="Реєстрація" />
         <RegistrationForm />
       </View>
