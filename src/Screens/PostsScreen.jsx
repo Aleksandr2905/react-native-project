@@ -1,5 +1,13 @@
-import React from "react";
+import { FlatList, SafeAreaView, View } from "react-native";
+import { UserInfo } from "../components/UserInfo";
 
 export const PostsScreen = () => {
-  return <div>PostsScreen</div>;
+  return (
+    <SafeAreaView>
+      <View>
+        <UserInfo />
+        <FlatList />
+      </View>
+    </SafeAreaView>
+  );
 };

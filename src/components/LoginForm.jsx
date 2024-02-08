@@ -14,6 +14,7 @@ export const LoginForm = () => {
       Alert.alert("Заповніть будь-ласка усі поля");
     }
     const user = { email, password };
+    navigation.navigate("Posts");
     console.log(user);
     setEmail("");
     setPassword("");
