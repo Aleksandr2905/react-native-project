@@ -20,8 +20,8 @@ const getHeaderTitle = (route) => {
   }
   return {
     justifyContent: "center",
-    height: 60,
-    paddingHorizontal: 80,
+    height: 83,
+    paddingHorizontal: 82,
   };
 };
 
