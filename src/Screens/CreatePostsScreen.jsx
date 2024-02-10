@@ -1,5 +1,5 @@
-import React from "react";
+import { Text } from "react-native";
 
 export const CreatePostsScreen = () => {
-  return <div>CreatePostsScreen</div>;
+  return <Text>CreatePostsScreen</Text>;
 };
