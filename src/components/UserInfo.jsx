@@ -1,13 +1,14 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import ava from "../../assets/images/user.png";
 
 export const UserInfo = () => {
   const avatar = "avatar";
-  const login = "login";
-  const email = "email";
+  const login = "Natali Romanova";
+  const email = "email@example.com";
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: avatar }} style={styles.avatar} />
+      <Image source={ava} style={styles.avatar} />
       <View>
         <Text style={styles.login}>{login}</Text>
         <Text style={styles.email}>{email}</Text>
