@@ -50,6 +50,12 @@ export const PostsNavigator = () => {
           tabBarStyle: {
             display: "none",
           },
+          // headerLeft: () => (
+          //   <TouchableOpacity onPress={() => navigation.goBack()}>
+          //     <AntDesign name="arrowleft" size={24} style={styles.iconArrow} />
+          //   </TouchableOpacity>
+          // ),
+          // unmountOnBlur: true,
         }}
       />
     </PostsStack.Navigator>
@@ -58,7 +64,8 @@ export const PostsNavigator = () => {
 
 const styles = StyleSheet.create({
   iconArrow: {
-    color: "#212121",
+    color: "#21212180",
+    left: 16,
   },
   icon: {
     color: "#BDBDBD",
