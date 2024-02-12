@@ -1,9 +1,13 @@
 import {
   ImageBackground,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -18,53 +22,68 @@ export const CreatePostsScreen = () => {
   const disable = !(title || place);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.photoWrapper}>
-        <ImageBackground source={{ uri: img }} style={styles.photo}>
-          <TouchableOpacity>
-            <FontAwesome name="camera" size={24} style={styles.iconCamera} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <View style={styles.generalWrapper}>
+          <View style={styles.photoWrapper}>
+            <ImageBackground source={{ uri: img }} style={styles.photo}>
+              <TouchableOpacity>
+                <FontAwesome
+                  name="camera"
+                  size={24}
+                  style={styles.iconCamera}
+                />
+              </TouchableOpacity>
+            </ImageBackground>
+          </View>
+          <Text style={styles.text}>Завантажте фото</Text>
+          <TextInput
+            style={styles.input}
+            name="name"
+            placeholder="Назва..."
+            placeholderTextColor={"#bdbdbd"}
+            value={title}
+            // onChangeText=""
+          />
+          <View>
+            <TextInput
+              style={styles.inputLocation}
+              name="location"
+              placeholder="Місцевість..."
+              placeholderTextColor={"#bdbdbd"}
+              value={place}
+              // onChangeText=""
+            />
+            <Feather
+              name="map-pin"
+              size={24}
+              color={"#BDBDBD"}
+              style={styles.mapPin}
+            />
+          </View>
+          <ButtonForm title="Опубліковати" onPress="" disabled={disable} />
+          <TouchableOpacity style={styles.btnDelete}>
+            <Feather name="trash-2" size={24} style={styles.iconDelete} />
           </TouchableOpacity>
-        </ImageBackground>
-      </View>
-      <Text style={styles.text}>Завантажте фото</Text>
-      <TextInput
-        style={styles.input}
-        name="name"
-        placeholder="Назва..."
-        placeholderTextColor={"#bdbdbd"}
-        value={title}
-        onChangeText=""
-      />
-      <View>
-        <TextInput
-          style={styles.inputLocation}
-          name="location"
-          placeholder="Місцевість..."
-          placeholderTextColor={"#bdbdbd"}
-          value={place}
-          onChangeText=""
-        />
-        <Feather
-          name="map-pin"
-          size={24}
-          color={"#BDBDBD"}
-          style={styles.mapPin}
-        />
-      </View>
-      <ButtonForm title="Опубліковати" onPress="" disabled={disable} />
-      <TouchableOpacity style={styles.btnDelete}>
-        <Feather name="trash-2" size={24} style={styles.iconDelete} />
-      </TouchableOpacity>
-    </View>
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    height: "100%",
+    backgroundColor: "#fff",
+  },
+  generalWrapper: {
+    width: "100%",
     paddingHorizontal: 16,
-    paddingTop: 32,
+    paddingVertical: 32,
   },
   photoWrapper: {
     height: 240,
@@ -116,7 +135,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 40,
     alignSelf: "center",
-    marginTop: "auto",
+    marginTop: 120,
     marginBottom: 34,
     borderRadius: 20,
     paddingHorizontal: 23,

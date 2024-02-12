@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export const Post = ({ item }) => {
+export const Post = ({ item, showThumbsUpIcon }) => {
   const { photo, title, comments, likes, country } = item;
   const navigation = useNavigation("");
 
@@ -25,14 +25,16 @@ export const Post = ({ item }) => {
               {comments}
             </Text>
           </TouchableOpacity>
-          <View style={styles.wrapperLikes}>
-            <Feather
-              name="thumbs-up"
-              size={24}
-              style={[styles.icon, !likes && { color: "#BDBDBD" }]}
-            />
-            <Text style={styles.text}>{likes}</Text>
-          </View>
+          {showThumbsUpIcon && (
+            <View style={styles.wrapperLikes}>
+              <Feather
+                name="thumbs-up"
+                size={24}
+                style={[styles.icon, !likes && { color: "#BDBDBD" }]}
+              />
+              <Text style={styles.text}>{likes}</Text>
+            </View>
+          )}
         </View>
         <View style={styles.wrapperLocation}>
           <Feather name="map-pin" size={24} color={"#BDBDBD"} />

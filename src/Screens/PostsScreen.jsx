@@ -10,7 +10,9 @@ export const PostsScreen = () => {
         <UserInfo />
         <FlatList
           data={posts}
-          renderItem={({ item }) => <Post item={item} />}
+          renderItem={({ item }) => (
+            <Post item={item} showThumbsUpIcon={false} />
+          )}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
         />
