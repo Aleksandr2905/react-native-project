@@ -1,5 +1,5 @@
-import React from "react";
+import { Text } from "react-native";
 
 export const CommentsScreen = () => {
-  return <div>CommentsScreen</div>;
+  return <Text>CommentsScreen</Text>;
 };
