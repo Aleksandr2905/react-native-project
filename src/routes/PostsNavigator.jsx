@@ -44,6 +44,7 @@ export const PostsNavigator = () => {
         name="Comments"
         component={CommentsScreen}
         options={{
+          headerBackVisible: false,
           title: "Коментарі",
           headerTitleAlign: "center",
           tabBarStyle: {
@@ -57,7 +58,7 @@ export const PostsNavigator = () => {
 
 const styles = StyleSheet.create({
   iconArrow: {
-    color: "#FF6C00",
+    color: "#212121",
   },
   icon: {
     color: "#BDBDBD",
