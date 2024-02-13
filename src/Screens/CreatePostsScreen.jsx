@@ -12,14 +12,38 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { posts } from "../data/posts";
 import { ButtonForm } from "../components/ButtonForm";
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export const CreatePostsScreen = () => {
-  const img = "photo";
+  const [photo, setPhoto] = useState("");
   const [title, setTitle] = useState("");
   const [place, setPlace] = useState("");
   const disable = !(title || place);
+  const navigation = useNavigation();
+
+  const addPost = () => {
+    const newPost = {
+      id: Math.random(),
+      photo: { uri: photo },
+      title,
+      comments: 0,
+      likes: 0,
+      country: place,
+    };
+    posts.push(newPost);
+    deleteAll();
+
+    navigation.navigate("PostsScreen", { newPost });
+  };
+
+  const deleteAll = () => {
+    setPhoto("");
+    setTitle("");
+    setPlace("");
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -29,7 +53,7 @@ export const CreatePostsScreen = () => {
       >
         <View style={styles.generalWrapper}>
           <View style={styles.photoWrapper}>
-            <ImageBackground source={{ uri: img }} style={styles.photo}>
+            <ImageBackground source={{ uri: photo }} style={styles.photo}>
               <TouchableOpacity>
                 <FontAwesome
                   name="camera"
@@ -46,7 +70,7 @@ export const CreatePostsScreen = () => {
             placeholder="Назва..."
             placeholderTextColor={"#bdbdbd"}
             value={title}
-            // onChangeText=""
+            onChangeText={setTitle}
           />
           <View>
             <TextInput
@@ -55,7 +79,7 @@ export const CreatePostsScreen = () => {
               placeholder="Місцевість..."
               placeholderTextColor={"#bdbdbd"}
               value={place}
-              // onChangeText=""
+              onChangeText={setPlace}
             />
             <Feather
               name="map-pin"
@@ -64,7 +88,11 @@ export const CreatePostsScreen = () => {
               style={styles.mapPin}
             />
           </View>
-          <ButtonForm title="Опубліковати" onPress="" disabled={disable} />
+          <ButtonForm
+            title="Опубліковати"
+            onPress={addPost}
+            disabled={disable}
+          />
           <TouchableOpacity style={styles.btnDelete}>
             <Feather name="trash-2" size={24} style={styles.iconDelete} />
           </TouchableOpacity>
