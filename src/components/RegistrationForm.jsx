@@ -3,6 +3,7 @@ import { Input } from "./Input";
 import { ButtonForm } from "./ButtonForm";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { InputPassword } from "./InputPassword";
 
 export const RegistrationForm = () => {
   const [login, setLogin] = useState("");
@@ -35,12 +36,7 @@ export const RegistrationForm = () => {
         value={email}
         onChangeText={setEmail}
       />
-      <Input
-        name="password"
-        placeholder="Пароль"
-        value={password}
-        onChangeText={setPassword}
-      />
+      <InputPassword value={password} onChangeText={setPassword} />
       <ButtonForm title="Зареєстуватися" onPress={onRegister} />
       <View style={styles.wrapperText}>
         <Text style={styles.text}>Вже є акаунт?</Text>

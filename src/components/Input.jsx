@@ -14,6 +14,7 @@ export const Input = ({ name, value, placeholder, onChangeText }) => {
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       onChangeText={onChangeText}
+      cursorColor={"#212121"}
     />
   );
 };
