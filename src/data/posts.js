@@ -10,6 +10,7 @@ export const posts = [
     comments: 8,
     likes: 153,
     country: "Ukraine",
+    location: "",
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ export const posts = [
     comments: 3,
     likes: 200,
     country: "Ukraine",
+    location: "",
   },
   {
     id: 3,
@@ -26,5 +28,6 @@ export const posts = [
     comments: 50,
     likes: 200,
     country: "Italy",
+    location: "",
   },
 ];

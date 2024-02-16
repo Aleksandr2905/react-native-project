@@ -70,6 +70,61 @@ export const CreatePostsScreen = () => {
     setPhoto("");
   };
 
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+  //==============================
+  // const getLocation = async () => {
+  //   let { status } = await Location.requestForegroundPermissionsAsync();
+  //   if (status !== "granted") {
+  //     console.log("Permission to access location was denied");
+  //   }
+
+  //   let location = await Location.getCurrentPositionAsync({});
+  //   const coords = {
+  //     latitude: location.coords.latitude,
+  //     longitude: location.coords.longitude,
+  //   };
+  //   setLocation(coords);
+  // };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const { status } = await Camera.requestCameraPermissionsAsync();
+  //     await MediaLibrary.requestPermissionsAsync();
+
+  //     setHasPermission(status === "granted");
+  //   })();
+  //   getLocation();
+  // }, []);
+
+  // const getLocationName = async () => {
+  //   try {
+  //     if (location) {
+  //       const locationInfo = await Location.reverseGeocodeAsync({
+  //         latitude: location.latitude,
+  //         longitude: location.longitude,
+  //       });
+  //       if (locationInfo && locationInfo.length > 0) {
+  //         const { city, country } = locationInfo[0];
+  //         const locationString = `${city}, ${country}`;
+  //         setLocate(locationString);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching location:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getLocationName();
+  // }, [location]);
+
+  //============================================================================
+
   const addPost = () => {
     const newPost = {
       id: Math.random(),
@@ -78,6 +133,7 @@ export const CreatePostsScreen = () => {
       comments: 0,
       likes: 0,
       country: locate,
+      location,
     };
     posts.push(newPost);
     deleteAll();

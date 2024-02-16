@@ -5,6 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { MapScreen } from "../screens/MapScreen";
 
 const PostsStack = createStackNavigator();
 
@@ -43,20 +44,19 @@ export const PostsNavigator = () => {
       <PostsStack.Screen
         name="Comments"
         component={CommentsScreen}
-        options={{
+        options={() => ({
           headerBackVisible: false,
           title: "Коментарі",
           headerTitleAlign: "center",
           tabBarStyle: {
             display: "none",
           },
-          // headerLeft: () => (
-          //   <TouchableOpacity onPress={() => navigation.goBack()}>
-          //     <AntDesign name="arrowleft" size={24} style={styles.iconArrow} />
-          //   </TouchableOpacity>
-          // ),
-          // unmountOnBlur: true,
-        }}
+        })}
+      />
+      <PostsStack.Screen
+        name="Map"
+        component={MapScreen}
+        options={() => ({ title: "Карта", headerTitleAlign: "center" })}
       />
     </PostsStack.Navigator>
   );

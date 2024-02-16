@@ -3,7 +3,7 @@ import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 export const Post = ({ item, showThumbsUpIcon }) => {
-  const { photo, title, comments, likes, country } = item;
+  const { photo, title, comments, likes, country, location } = item;
   const navigation = useNavigation("");
 
   return (
@@ -36,10 +36,13 @@ export const Post = ({ item, showThumbsUpIcon }) => {
             </View>
           )}
         </View>
-        <View style={styles.wrapperLocation}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Map", { location })}
+          style={styles.wrapperLocation}
+        >
           <Feather name="map-pin" size={24} color={"#BDBDBD"} />
           <Text style={[styles.text, styles.country]}>{country}</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
