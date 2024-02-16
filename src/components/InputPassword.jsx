@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 
-export const InputPassword = ({ name, value, placeholder, onChangeText }) => {
+export const InputPassword = ({ value, onChangeText }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 

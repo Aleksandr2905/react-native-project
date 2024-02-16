@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   buttonDisabled: {
     backgroundColor: "#f6f6f6",
-    cTouolor: "#bdbdbd",
+    color: "#bdbdbd",
   },
   buttonText: {
     fontSize: 16,
