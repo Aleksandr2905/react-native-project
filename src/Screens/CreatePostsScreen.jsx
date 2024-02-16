@@ -34,8 +34,9 @@ export const CreatePostsScreen = () => {
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  //==============================
   const getLocation = async () => {
-    let { status } = await Location.requestBackgroundPermissionsAsync();
+    let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
       console.log("Permission to access location was denied");
     }
@@ -58,27 +59,32 @@ export const CreatePostsScreen = () => {
     getLocation();
   }, []);
 
-  const takePhoto = async () => {
-    if (cameraRef) {
-      const { uri } = await cameraRef.takePictureAsync();
-      await MediaLibrary.createAssetAsync(uri);
-      setPhoto(uri);
+  const getLocationName = async () => {
+    try {
+      if (location) {
+        const locationInfo = await Location.reverseGeocodeAsync({
+          latitude: location.latitude,
+          longitude: location.longitude,
+        });
+        if (locationInfo && locationInfo.length > 0) {
+          const { city, country } = locationInfo[0];
+          const locationString = `${city}, ${country}`;
+          setLocate(locationString);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching location:", error);
     }
   };
 
-  const deletePhoto = () => {
-    setPhoto("");
-  };
+  useEffect(() => {
+    getLocationName();
+  }, [location]);
 
-  if (hasPermission === null) {
-    return <View />;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-  //==============================
+  //============================================================================
+
   // const getLocation = async () => {
-  //   let { status } = await Location.requestForegroundPermissionsAsync();
+  //   let { status } = await Location.requestBackgroundPermissionsAsync();
   //   if (status !== "granted") {
   //     console.log("Permission to access location was denied");
   //   }
@@ -101,29 +107,24 @@ export const CreatePostsScreen = () => {
   //   getLocation();
   // }, []);
 
-  // const getLocationName = async () => {
-  //   try {
-  //     if (location) {
-  //       const locationInfo = await Location.reverseGeocodeAsync({
-  //         latitude: location.latitude,
-  //         longitude: location.longitude,
-  //       });
-  //       if (locationInfo && locationInfo.length > 0) {
-  //         const { city, country } = locationInfo[0];
-  //         const locationString = `${city}, ${country}`;
-  //         setLocate(locationString);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching location:", error);
-  //   }
-  // };
+  const takePhoto = async () => {
+    if (cameraRef) {
+      const { uri } = await cameraRef.takePictureAsync();
+      await MediaLibrary.createAssetAsync(uri);
+      setPhoto(uri);
+    }
+  };
 
-  // useEffect(() => {
-  //   getLocationName();
-  // }, [location]);
+  const deletePhoto = () => {
+    setPhoto("");
+  };
 
-  //============================================================================
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
 
   const addPost = () => {
     const newPost = {
@@ -240,7 +241,7 @@ export const CreatePostsScreen = () => {
             onPress={addPost}
             disabled={disable}
           />
-          <TouchableOpacity style={styles.btnDelete}>
+          <TouchableOpacity style={styles.btnDelete} onPress={deleteAll}>
             <Feather name="trash-2" size={24} style={styles.iconDelete} />
           </TouchableOpacity>
         </View>
