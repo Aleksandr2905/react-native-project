@@ -10,7 +10,7 @@ export const posts = [
     comments: 8,
     likes: 153,
     country: "Ukraine",
-    location: "",
+    location: { latitude: 50.4510494, longitude: 30.5135938 },
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const posts = [
     comments: 3,
     likes: 200,
     country: "Ukraine",
-    location: "",
+    location: { latitude: 50.4510494, longitude: 30.5135938 },
   },
   {
     id: 3,
@@ -28,6 +28,6 @@ export const posts = [
     comments: 50,
     likes: 200,
     country: "Italy",
-    location: "",
+    location: { latitude: 41.9099533, longitude: 12.3711901 },
   },
 ];

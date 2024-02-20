@@ -26,7 +26,7 @@ export const CreatePostsScreen = () => {
   const [photo, setPhoto] = useState("");
   const [title, setTitle] = useState("");
   const [locate, setLocate] = useState("");
-  const disable = !(title || locate);
+  const disable = !(title && locate && photo);
   const navigation = useNavigation();
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);

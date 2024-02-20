@@ -20,9 +20,9 @@ export const MapScreen = () => {
           longitudeDelta: 0.0421,
         }}
         mapType="standard"
-        minZoomLevel={15}
-        onMapReady={() => console.log("Map is ready")}
-        onRegionChange={() => console.log("Region change")}
+        minZoomLevel={5}
+        // onMapReady={() => console.log("Map is ready")}
+        // onRegionChange={() => console.log("Region change")}
       >
         <Marker
           title="I am here"
