@@ -8,6 +8,7 @@ const initialState = {
     login: null,
     email: null,
   },
+  isLoading: false,
   isAuth: false,
   error: null,
 };
@@ -18,6 +19,7 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.user = action.payload.user;
+      state.isLoading = false;
       state.isAuth = true;
       state.error = null;
     }),
