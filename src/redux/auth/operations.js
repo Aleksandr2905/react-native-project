@@ -4,20 +4,21 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase/config";
 
 export const signUp = createAsyncThunk(
   "auth/signup",
-  async (userData, thunkAPI) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const { email, password, login, avatar } = userData;
-      const response = await createUserWithEmailAndPassword(
+      const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      console.log(response);
+      console.log("signUp", response);
       await updateProfile(auth.currentUser, {
         displayName: login,
         photoURL: avatar,
@@ -25,15 +26,49 @@ export const signUp = createAsyncThunk(
 
       const data = {
         user: {
-          name: response.user.displayName,
-          email: response.user.email,
-          id: response.user.uid,
-          avatar: response.user.photoURL,
+          name: user.displayName,
+          email: user.email,
+          id: user.uid,
+          avatar: user.photoURL,
         },
       };
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const signIn = createAsyncThunk(
+  "auth/signin",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const { email, password } = userData;
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+
+      const data = {
+        user: {
+          name: user.displayName,
+          email: user.email,
+          id: user.uid,
+          avatar: user.photoURL,
+        },
+      };
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth);
+      return;
+    } catch (error) {
+      return rejectWithValue(error._message);
     }
   }
 );

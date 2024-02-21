@@ -6,11 +6,18 @@ import { Feather } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MapScreen } from "../screens/MapScreen";
+import { useDispatch } from "react-redux";
+import { logOut } from "../redux/auth/operations";
 
 const PostsStack = createStackNavigator();
 
 export const PostsNavigator = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(logOut());
+  };
 
   return (
     <PostsStack.Navigator
@@ -33,7 +40,7 @@ export const PostsNavigator = () => {
           title: "Публікації",
           headerTitleAlign: "center",
           headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <TouchableOpacity onPress={logout}>
               <Feather name="log-out" size={24} style={styles.icon} />
             </TouchableOpacity>
           ),

@@ -6,13 +6,6 @@ import { useNavigation } from "@react-navigation/native";
 import { InputPassword } from "./InputPassword";
 import { useDispatch } from "react-redux";
 import { signUp } from "../redux/auth/operations";
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-//   onAuthStateChanged,
-//   updateProfile,
-// } from "firebase/auth";
-// import { auth } from "../firebase/config";
 
 export const RegistrationForm = ({ avatar }) => {
   const [login, setLogin] = useState("");
@@ -26,14 +19,8 @@ export const RegistrationForm = ({ avatar }) => {
       Alert.alert("Заповніть будь-ласка усі поля");
     }
     const user = { login, email, password, avatar };
-    // try {
-    //   createUserWithEmailAndPassword(auth, email, password);
-    // } catch (error) {
-    //   throw error;
-    // }
     dispatch(signUp(user));
 
-    console.log(user);
     setLogin("");
     setEmail("");
     setPassword("");

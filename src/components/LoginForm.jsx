@@ -4,19 +4,22 @@ import { ButtonForm } from "./ButtonForm";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { InputPassword } from "./InputPassword";
+import { useDispatch } from "react-redux";
+import { signIn } from "../redux/auth/operations";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation("");
+  const dispatch = useDispatch();
 
   const onLogin = () => {
     if (!email || !password) {
       Alert.alert("Заповніть будь-ласка усі поля");
     }
     const user = { email, password };
-    navigation.navigate("Home");
-    console.log(user);
+    dispatch(signIn(user));
+
     setEmail("");
     setPassword("");
   };
