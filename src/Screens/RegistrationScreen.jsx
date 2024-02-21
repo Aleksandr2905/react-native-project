@@ -26,7 +26,7 @@ export const RegistrationScreen = () => {
           <View style={styles.wrapper}>
             <Avatar avatar={avatar} setAvatar={setAvatar} />
             <Title title="Реєстрація" />
-            <RegistrationForm />
+            <RegistrationForm avatar={avatar} />
           </View>
         </Background>
       </KeyboardAvoidingView>
