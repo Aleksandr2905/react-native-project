@@ -25,6 +25,10 @@ export const PostsNavigator = () => {
       screenOptions={{
         headerBackVisible: false,
         tabBarShowLabel: false,
+        headerStyle: {
+          borderBottomColor: "#e8e8e8",
+          borderBottomWidth: 1,
+        },
         headerLeft: () => (
           <TouchableOpacity onPress={() => navigation.navigate("PostsScreen")}>
             <AntDesign name="arrowleft" size={24} style={styles.iconArrow} />
