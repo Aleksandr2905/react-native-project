@@ -1,14 +1,19 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import ava from "../../assets/images/user.png";
+import { useSelector } from "react-redux";
+import {
+  selectAvatar,
+  selectEmail,
+  selectLogin,
+} from "../redux/auth/selectors";
 
 export const UserInfo = () => {
-  const avatar = "avatar";
-  const login = "Natali Romanova";
-  const email = "email@example.com";
+  const avatar = useSelector(selectAvatar);
+  const login = useSelector(selectLogin);
+  const email = useSelector(selectEmail);
 
   return (
     <View style={styles.container}>
-      <Image source={ava} style={styles.avatar} />
+      <Image source={{ uri: avatar }} style={styles.avatar} />
       <View>
         <Text style={styles.login}>{login}</Text>
         <Text style={styles.email}>{email}</Text>

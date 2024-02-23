@@ -2,7 +2,6 @@ import {
   FlatList,
   SafeAreaView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -11,13 +10,20 @@ import { posts } from "../data/posts";
 import { Background } from "../components/Background";
 import { Avatar } from "../components/Avatar";
 import { Title } from "../components/Title";
-import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAvatar, selectLogin } from "../redux/auth/selectors";
+import { logOut } from "../redux/auth/operations";
 
 export const ProfileScreen = () => {
-  const navigation = useNavigation();
-  const avatar = "avatar";
-  const login = "Natali Romanova";
+  const avatar = useSelector(selectAvatar);
+  const login = useSelector(selectLogin);
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(logOut());
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Background>
@@ -25,10 +31,7 @@ export const ProfileScreen = () => {
           ListHeaderComponent={
             <View style={styles.headerWrapper}>
               <Avatar avatar={avatar} />
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Login")}
-                style={styles.logout}
-              >
+              <TouchableOpacity onPress={logout} style={styles.logout}>
                 <Feather name="log-out" size={24} style={styles.icon} />
               </TouchableOpacity>
               <Title title={login} />

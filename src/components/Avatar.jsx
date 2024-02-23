@@ -1,9 +1,14 @@
-import { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { AntDesign } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAvatar } from "../redux/auth/operations";
+import { selectIsAuth } from "../redux/auth/selectors";
 
 export const Avatar = ({ avatar, setAvatar }) => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  console.log("AVATAR", avatar);
   const addAvatar = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -11,15 +16,20 @@ export const Avatar = ({ avatar, setAvatar }) => {
       aspect: [1, 1],
       quality: 1,
     });
-    console.log(result);
 
     if (!result.canceled) {
       setAvatar(result.assets[0].uri);
     }
+    if (isAuth) {
+      dispatch(updateAvatar(avatar));
+    }
   };
 
   const deleteAvatar = () => {
-    setAvatar(null);
+    // setAvatar(null);
+    if (isAuth) {
+      dispatch(updateAvatar(null));
+    }
   };
 
   return (

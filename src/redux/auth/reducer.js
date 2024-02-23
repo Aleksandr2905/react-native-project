@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logOut, signIn, signUp } from "./operations";
+import { logOut, signIn, signUp, updateAvatar } from "./operations";
 import {
   handlerFulfilled,
   handlerLogOutFulfilled,
   handlerLogOutRejected,
   handlerPending,
   handlerRejected,
+  handlerUpdateAvatarFulfilled,
 } from "./handlers";
 
 const initialState = {
@@ -33,7 +34,10 @@ const authSlice = createSlice({
       .addCase(signIn.rejected, handlerRejected)
       .addCase(logOut.pending, handlerPending)
       .addCase(logOut.fulfilled, handlerLogOutFulfilled)
-      .addCase(logOut.rejected, handlerLogOutRejected),
+      .addCase(logOut.rejected, handlerLogOutRejected)
+      .addCase(updateAvatar.pending, handlerPending)
+      .addCase(updateAvatar.fulfilled, handlerUpdateAvatarFulfilled)
+      .addCase(updateAvatar.rejected, handlerRejected),
 });
 
 export const authReducer = authSlice.reducer;

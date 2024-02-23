@@ -4,6 +4,7 @@ export const handlerPending = (state) => {
 };
 
 export const handlerFulfilled = (state, { payload }) => {
+  console.log("AUTH", state.user);
   state.user = payload.user;
   state.isLoading = false;
   state.isAuth = true;
@@ -23,4 +24,10 @@ export const handlerLogOutFulfilled = (state) => {
 export const handlerLogOutRejected = (state, { payload }) => {
   state.isAuth = false;
   state.error = payload.message;
+};
+
+export const handlerUpdateAvatarFulfilled = (state, { payload }) => {
+  console.log("HANDLERS", state);
+  console.log("HANDLERSpayload", payload);
+  state.user = payload.user;
 };

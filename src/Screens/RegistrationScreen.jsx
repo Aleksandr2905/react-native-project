@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -10,10 +11,10 @@ import { Background } from "../components/Background";
 import { Title } from "../components/Title";
 import { RegistrationForm } from "../components/RegistrationForm";
 import { Avatar } from "../components/Avatar";
-import { useState } from "react";
 
 export const RegistrationScreen = () => {
   const [avatar, setAvatar] = useState(null);
+  console.log("regscreen", setAvatar);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
