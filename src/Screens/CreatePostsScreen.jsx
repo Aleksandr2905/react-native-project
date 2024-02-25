@@ -21,6 +21,10 @@ import { posts } from "../data/posts";
 import { ButtonForm } from "../components/ButtonForm";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/auth/selectors";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 export const CreatePostsScreen = () => {
   const [photo, setPhoto] = useState("");
@@ -33,6 +37,7 @@ export const CreatePostsScreen = () => {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const user = useSelector(selectUser);
 
   //==============================
   const getLocation = async () => {
@@ -126,21 +131,33 @@ export const CreatePostsScreen = () => {
     return <Text>No access to camera</Text>;
   }
 
-  const addPost = () => {
+  const addPost = async () => {
     const newPost = {
-      id: Math.random(),
+      userId: user.id,
       photo: { uri: photo },
       title,
-      comments: 0,
-      likes: 0,
       country: locate,
       location,
     };
-    posts.push(newPost);
-    deleteAll();
-
-    navigation.navigate("PostsScreen", { newPost });
+    await addDoc(collection(db, "posts"), newPost);
+    navigation.navigate("PostsScreen");
   };
+
+  // const addPost = () => {
+  //   const newPost = {
+  //     id: Math.random(),
+  //     photo: { uri: photo },
+  //     title,
+  //     comments: 0,
+  //     likes: 0,
+  //     country: locate,
+  //     location,
+  //   };
+  //   posts.push(newPost);
+  //   deleteAll();
+
+  //   navigation.navigate("PostsScreen", { newPost });
+  // };
 
   const deleteAll = () => {
     setPhoto("");

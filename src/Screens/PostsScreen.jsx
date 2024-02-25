@@ -2,8 +2,25 @@ import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import { UserInfo } from "../components/UserInfo";
 import { posts } from "../data/posts";
 import { Post } from "../components/Post";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 export const PostsScreen = () => {
+  const getDataFromFirestore = async () => {
+    try {
+      const snapshot = await getDocs(collection(db, "posts"));
+      console.log("snapshot", snapshot);
+
+      snapshot.forEach((doc) => console.log(`${doc.id} =>`, doc.data()));
+
+      return snapshot.map((doc) => ({ id: doc.id, data: doc.data() }));
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+  getDataFromFirestore();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>

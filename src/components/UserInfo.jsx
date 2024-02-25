@@ -6,8 +6,8 @@ import {
   selectLogin,
 } from "../redux/auth/selectors";
 
-export const UserInfo = () => {
-  const avatar = useSelector(selectAvatar);
+export const UserInfo = ({ avatar }) => {
+  // const avatar = useSelector(selectAvatar);
   const login = useSelector(selectLogin);
   const email = useSelector(selectEmail);
 
